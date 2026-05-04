@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0a1a2a;
+    background-image:
+        linear-gradient(45deg, rgba(0, 255, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 100%),
+        linear-gradient(-45deg, rgba(0, 255, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(0, 255, 255, 0.05) 75%, rgba(0, 255, 255, 0.05) 100%),
+        linear-gradient(to bottom, #0a1a2a, #000000);
+    background-size: 40px 40px, 40px 40px, cover;
+    background-repeat: repeat, repeat, no-repeat;
+    background-attachment: fixed;
+
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+}
+
+#game-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.2);
+    border: 2px solid #333;
+    background-color: transparent; /* Ensure game container is transparent */
+}
+
+canvas {
+    display: block;
+    /* Removed background-color to allow p5.js animation to show through */
+    /* background-color: #000; */
+}
+
+#ui-layer {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    pointer-events: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+#score-board {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+#health-bar-container {
+    width: 200px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #ff0055;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#health-bar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff0055, #ff55aa);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 15px #ff0055;
+}
+
+#powerup-info {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    color: #ffff00;
+    font-weight: bold;
+    text-shadow: 0 0 5px #ffff00;
+}
+
+#menu-overlay, #game-over-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+h1 {
+    font-size: 64px;
+    margin-bottom: 20px;
+    color: #00ffff;
+    text-shadow: 0 0 20px #00ffff;
+    letter-spacing: 5px;
+}
+
+p {
+    margin-bottom: 30px;
+    color: #ccc;
+    font-size: 18px;
+}
+
+button {
+    padding: 15px 40px;
+    font-size: 20px;
+    background: transparent;
+    border: 2px solid #00ffff;
+    color: #00ffff;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+button:hover {
+    background: #00ffff;
+    color: #000;
+    box-shadow: 0 0 30px #00ffff;
+}
+
+#p5BackgroundCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Ensure it's behind other content */
+}
+
+#enemy-info-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 11; /* Higher than other overlays */
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#enemy-info-overlay h2 {
+    font-size: 48px;
+    color: #ffcc00;
+    text-shadow: 0 0 15px #ffcc00;
+    margin-bottom: 20px;
+}
+
+#enemy-info-overlay h3 {
+    font-size: 36px;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+    margin-bottom: 15px;
+}
+
+#enemy-info-overlay p {
+    font-size: 20px;
+    color: #ccc;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+#enemy-info-visual {
+    width: 100px;
+    height: 100px;
+    border: 3px solid;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 20px;
+    box-shadow: 0 0 20px;
+}
+
+#stage-clear-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    text-align: center;
+}
+
+#stage-clear-overlay h1 {
+    font-size: 64px;
+    margin-bottom: 20px;
+    color: #00ff00; /* Green for clearance */
+    text-shadow: 0 0 20px #00ff00;
+    letter-spacing: 5px;
+}
+
+#stage-clear-overlay p {
+    margin-bottom: 30px;
+    color: #ccc;
+    font-size: 18px;
+}
