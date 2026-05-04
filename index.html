@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>霓虹競技場 - 全方位射擊遊戲</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="ui-layer">
+            <div id="score-board">分數: <span id="score">0</span></div>
+            <div id="health-bar-container">
+                <div id="health-bar"></div>
+            </div>
+            <div id="powerup-info"></div>
+        </div>
+        <div id="enemy-info-overlay" class="hidden">
+            <h2>新敵人出現！</h2>
+            <h3 id="enemy-info-name"></h3>
+            <p id="enemy-info-description"></p>
+            <div id="enemy-info-visual"></div>
+        </div>
+        <div id="stage-clear-overlay" class="hidden">
+            <h1>階段完成！</h1>
+            <p>準備好迎接新的挑戰！</p>
+        </div>
+        <div id="menu-overlay">
+            <h1>霓虹競技場</h1>
+            <p>WASD 移動 | 滑鼠左鍵射擊</p>
+            <button id="start-btn">開始遊戲</button>
+        </div>
+        <div id="game-over-overlay" class="hidden">
+            <h1>遊戲結束</h1>
+            <p>最終得分: <span id="final-score">0</span></p>
+            <button id="restart-btn">重新挑戰</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
